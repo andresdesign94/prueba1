@@ -1,0 +1,99 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prueba Rosaura</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #encabezado {
+            font-size: 10vw;
+            margin-top: 5vh;
+        }
+
+        .contenedor-circulos {
+            display: flex;
+            justify-content: center;
+            margin-top: 2vh;
+        }
+
+        .circulo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 20vw;
+            height: 20vw;
+            border-radius: 50%;
+            margin: 2vw;
+            cursor: pointer;
+            text-align: center;
+            line-height: 5vw;
+            transition: all 0.5s;
+        }
+
+        #si {
+            background-color: green;
+            color: white;
+            font-size: 5vw;
+        }
+
+        #no {
+            background-color: red;
+            color: white;
+            font-size: 5vw;
+        }
+
+        #mensaje-final {
+            font-size: 7vw;
+            margin-top: 5vh;
+            display: none;
+        }
+
+        .bold {
+            font-weight: bold;
+            font-size: 3vw;
+        }
+    </style>
+</head>
+<body>
+    <h1 id="encabezado">¿Querés ser mi novia?</h1>
+    <div class="contenedor-circulos">
+        <div class="circulo" id="si" onclick="seleccionarRespuesta('si')">Sí</div>
+        <div class="circulo" id="no" onclick="seleccionarRespuesta('no')">No</div>
+    </div>
+
+    <p id="mensaje-final"></p>
+
+    <script>
+        let intentos = 0;
+
+        function seleccionarRespuesta(respuesta) {
+            if (respuesta === 'no' && intentos < 10) {
+                if (intentos >= 3) {
+                    document.getElementById('no').style.transform = 'scale(0.5)';
+                }
+                document.getElementById('no').style.opacity = 0;
+                intentos++;
+            } else if (respuesta === 'si') {
+                document.getElementById('mensaje-final').innerHTML = '<span class="bold" style="font-size: 200%;">¡Felicidades!</span><br>Ahora vamos a aparearnos.';
+                document.getElementById('mensaje-final').style.display = 'block';
+                document.getElementById('encabezado').style.display = 'none';
+                document.querySelector('.contenedor-circulos').style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>
+
